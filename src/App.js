@@ -6,20 +6,66 @@ import React, {Component} from "react"
 import styled from "styled-components"
 
 const Container = styled.div`
-  font-size: 12px;
-  border: solid;
+  font-size: 40px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-evenly;
   flex-direction:column;
 `
 
 const Butoes = styled.div `
   display: flex;
+  height: 20vh;
+  width:70%;
+  justify-content: space-evenly;
+  align-items: center;
+
+  button {
+    height:40px;
+    width:100px;
+    color: white;
+    border-radius: 5px;
+    background-color: blue;
+    cursor: pointer;
+  }
 `
 
 const Paragrafo = styled.p `
-  font-size: 12px;
+  font-size: 25px;
+`
+
+const Inputs = styled.div`
+  display:flex;
+  flex-direction: column;
+  width:80%;
+  height: 200px;
+  align-items: center;
+  justify-content: space-evenly;
+  
+`
+
+const Escreva = styled.input`
+  display: flex;
+  height: 50px;
+  width: 50%;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 25px;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    -moz-appearance:textfield;
+    margin:0;
+  }
+` 
+
+const Limpar = styled.button`
+    height:30px;
+    width:80px;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+    cursor: pointer;
 `
 
 export default class Calculadora extends Component{
@@ -73,6 +119,7 @@ export default class Calculadora extends Component{
       resultado: 0,
       numero1: 0,
       numero2: 0,
+      metodo: "+",
     })
   }
 
@@ -82,15 +129,17 @@ export default class Calculadora extends Component{
       <Container>
         <h1>Calculadora</h1>
         <Paragrafo>{this.state.numero1} {this.state.metodo} {this.state.numero2} = {this.state.resultado}</Paragrafo>
-        <input onChange={this.handleChange} type="number" />
-        <input onChange={this.handleChange1} type="number" />
+        <Inputs>
+        <Escreva onChange={this.handleChange} type="number" />
+        <Escreva onChange={this.handleChange1} type="number" />
+        </Inputs>
         <Butoes>
           <button onClick={this.somar}>Somar</button>
           <button onClick={this.subtrair}>Diminuir</button>
           <button onClick={this.multiplicacao}>Multiplicar</button>
           <button onClick={this.dividir}>Dividir</button>
         </Butoes>
-        <button onClick={this.limpar}>Limpar</button>
+        <Limpar onClick={this.limpar}>Limpar</Limpar>
       </Container>
     )
   }
