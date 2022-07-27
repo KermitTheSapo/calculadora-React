@@ -71,21 +71,25 @@ const Limpar = styled.button`
 export default class Calculadora extends Component{
 
   state= {
-    numero1: 0,
-    numero2: 0,
+    numero1: "",
+    numero2: "",
     resultado: 0,
     metodo: "+",
+    showNumero1:0,
+    showNumero2:0,
   }
 
   handleChange = (event) => {
     this.setState({
-      numero1: Number(event.target.value)
+      numero1: Number(event.target.value),
+      showNumero1: Number(event.target.value)
     })
   }
 
   handleChange1 = (event) => {
     this.setState({
-      numero2: Number(event.target.value)
+      numero2: Number(event.target.value),
+      showNumero2: Number(event.target.value)
     })
   }
   somar = () => {
@@ -116,10 +120,12 @@ export default class Calculadora extends Component{
 
   limpar = () => {
     this.setState({
-      resultado: 0,
-      numero1: 0,
-      numero2: 0,
+      resultado: "0",
       metodo: "+",
+      numero1: "",
+      numero2: "",
+      showNumero1: 0,
+      showNumero2:0
     })
   }
 
@@ -128,10 +134,10 @@ export default class Calculadora extends Component{
     return(
       <Container>
         <h1>Calculadora</h1>
-        <Paragrafo>{this.state.numero1} {this.state.metodo} {this.state.numero2} = {this.state.resultado}</Paragrafo>
+        <Paragrafo>{this.state.showNumero1} {this.state.metodo} {this.state.showNumero2} = {this.state.resultado}</Paragrafo>
         <Inputs>
-        <Escreva onChange={this.handleChange} type="number" />
-        <Escreva onChange={this.handleChange1} type="number" />
+        <Escreva value={this.state.numero1} onChange={this.handleChange} type="number" />
+        <Escreva value={this.state.numero2} onChange={this.handleChange1} type="number" />
         </Inputs>
         <Butoes>
           <button onClick={this.somar}>Somar</button>
